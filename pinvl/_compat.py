@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from sys import version_info
+import sys
 
 
 __all__ = (
@@ -14,8 +14,9 @@ __all__ = (
 )
 
 
-PY2 = version_info[0] == 2
-PY3 = version_info[0] == 3
+# PORTABLE:CODE
+PY2 = sys.version_info[0] == 2
+PY3 = sys.version_info[0] == 3
 
 
 # types

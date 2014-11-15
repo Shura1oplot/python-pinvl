@@ -11,6 +11,7 @@ __all__ = ("Type", "Any", "Or", "Null", "Bool", "Float", "Int", "Atom",
            "Callable", "Call", "Forward", "DataError")
 
 
+# PORTABLE:CODE
 class DataError(ValueError):
 
     """

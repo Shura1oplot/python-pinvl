@@ -7,14 +7,14 @@ to validate complex data structures. Look at class docs for usage examples.
 
 import sys
 from .validators import *
+from .validators import __all__ as __validators_all__
 
 
 __version_info__ = (0, 1, 0)
 __version__ = ".".join(map(str, __version_info__))
 
-__all__ = ["Type", "Any", "Or", "Null", "Bool", "Float", "Int", "Atom",
-           "String", "List", "Tuple", "Key", "Dict", "Mapping", "Enum",
-           "Callable", "Call", "Forward", "DataError"]
+
+__all__ = list(__validators_all__)
 
 ENTRY_POINT = "pinvl"
 

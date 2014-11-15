@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from bson import ObjectId
-
 from ..validators import TypeConvert
 from .._compat import *
 
