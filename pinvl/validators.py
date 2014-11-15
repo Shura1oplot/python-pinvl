@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from collections import defaultdict
 import copy
 import re
 import numbers
@@ -235,13 +234,13 @@ class Or(ValidatorBase):
         self.validators = list(map(self._ensure_validator, validators))
 
     def _check(self, value):
-        errors = defaultdict(list)
+        errors = {}
 
         for validator in self.validators:
             try:
                 return validator.check(value)
             except DataError as e:
-                errors[repr(validator)].append(e)
+                errors.setdefault(repr(validator), []).append(e)
 
         for sncl_repr, err_lst in iteritems(errors):
             if len(err_lst) == 1:
@@ -908,13 +907,13 @@ class Dict(ValidatorBase):
 
         if self._soft_keys:
             for k, v in iteritems(data):
-                item_errors = defaultdict(list)
+                item_errors = {}
 
                 for validator in self._soft_keys:
                     try:
                         checked_mapping = validator.check({k: v})
                     except DataError as e:
-                        item_errors[repr(validator)].append(e.error[k])
+                        item_errors.setdefault(repr(validator), []).append(e.error[k])
                     else:
                         k, v = next(iteritems(checked_mapping))
                         collect[k] = v
