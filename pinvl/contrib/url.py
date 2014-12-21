@@ -56,7 +56,10 @@ class URL(String):
 
         url = urlparse.urlunsplit((scheme, netloc, path, query, fragment))
 
-        return super(URL, self)._check(url)
+        try:
+            return super(URL, self)._check(url)
+        except DataError:
+            raise self._invalid_url()
 
     @staticmethod
     def _invalid_url():
