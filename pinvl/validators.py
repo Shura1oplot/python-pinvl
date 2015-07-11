@@ -550,9 +550,10 @@ class String(ValidatorBase):
 
     _re_compiled_type = re.compile(r"").__class__
 
-    def __init__(self, regex=None, flags=0):
+    def __init__(self, allow_empty=False, regex=None, flags=0):
         super(String, self).__init__()
 
+        self.allow_empty = allow_empty
         self.regex = None
 
         if isinstance(regex, self._re_compiled_type):
@@ -572,6 +573,9 @@ class String(ValidatorBase):
                 raise DataError("value does not match pattern")
 
             return match
+
+        if not self.allow_empty and not value:
+            raise DataError("value is empty")
 
         return value
 
